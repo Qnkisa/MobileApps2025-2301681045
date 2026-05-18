@@ -2,4 +2,18 @@
     <string name="app_name">ZeroG</string>
     <string name="nav_calculator">Simulator</string>
     <string name="nav_history">Log</string>
+    <string name="hint_item_name">Item Name (e.g. My Car)</string>
+    <string name="hint_earth_weight">Earth Weight (kg)</string>
+    <string name="label_gravity_reduction">Anti-Gravity Reduction</string>
+    <string name="btn_calculate">Calculate</string>
+    <string name="btn_save">Save to Log</string>
+    <string name="btn_share">Share with Crew</string>
+    <string name="label_zero_g_weight">Zero-G Weight</string>
+    <string name="empty_history_title">No calculations saved yet</string>
+    <string name="empty_history_subtitle">Go to Simulator to get started</string>
+    <string name="dialog_edit_title">Edit Item Name</string>
+    <string name="dialog_delete_title">Delete Entry</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_cancel">Cancel</string>
 </resources>
