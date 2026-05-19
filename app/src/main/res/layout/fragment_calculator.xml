@@ -8,31 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="24dp">
 
-        <!-- Header -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🌌 Zero-G Simulator"
-            android:textAppearance="?attr/textAppearanceHeadlineMedium"
-            android:layout_marginBottom="4dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="How much would it weigh in anti-gravity?"
-            android:textAppearance="?attr/textAppearanceBodyMedium"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            android:layout_marginBottom="24dp" />
-
-        <!-- Item Name -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilItemName"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_item_name"
+            android:hint="Item name"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -43,15 +26,14 @@
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Earth Weight -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEarthWeight"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_earth_weight"
+            android:hint="Weight on Earth"
             app:suffixText="kg"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="28dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEarthWeight"
@@ -61,146 +43,95 @@
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Gravity Reduction Slider Card -->
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="0dp"
-            app:strokeWidth="1dp"
-            app:strokeColor="?attr/colorOutlineVariant"
-            app:cardCornerRadius="12dp"
-            android:layout_marginBottom="24dp">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_weight="1"
+                android:text="Anti-Gravity"
+                android:textAppearance="?attr/textAppearanceBodyLarge" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="4dp">
+            <TextView
+                android:id="@+id/tvPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50%"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorPrimary" />
+        </LinearLayout>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/label_gravity_reduction"
-                        android:textAppearance="?attr/textAppearanceLabelLarge" />
+        <com.google.android.material.slider.Slider
+            android:id="@+id/sliderGravity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:valueFrom="0"
+            android:valueTo="100"
+            android:value="50"
+            android:stepSize="1"
+            app:labelBehavior="gone"
+            android:layout_marginBottom="32dp" />
 
-                    <TextView
-                        android:id="@+id/tvPercentage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="50%"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="?attr/colorPrimary" />
-                </LinearLayout>
-
-                <com.google.android.material.slider.Slider
-                    android:id="@+id/sliderGravity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:valueFrom="0"
-                    android:valueTo="100"
-                    android:value="50"
-                    android:stepSize="1"
-                    app:labelBehavior="gone" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="0% (Full Gravity)"
-                        android:textAppearance="?attr/textAppearanceBodySmall"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="100% (Zero-G)"
-                        android:textAppearance="?attr/textAppearanceBodySmall"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Calculate Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCalculate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_calculate"
-            android:layout_marginBottom="16dp" />
+            android:text="Calculate"
+            android:layout_marginBottom="20dp" />
 
-        <!-- Result Card (hidden until calculated) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="?attr/colorPrimaryContainer"
             app:cardElevation="0dp"
-            app:cardCornerRadius="16dp"
-            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="12dp"
+            android:layout_marginBottom="24dp"
             android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_zero_g_weight"
-                    android:textAppearance="?attr/textAppearanceLabelLarge"
+                    android:text="Zero-G weight"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?attr/colorOnPrimaryContainer" />
 
                 <TextView
                     android:id="@+id/tvResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceDisplaySmall"
+                    android:textAppearance="?attr/textAppearanceHeadlineMedium"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    android:layout_marginTop="4dp" />
-
-                <TextView
-                    android:id="@+id/tvFormula"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceBodySmall"
-                    android:textColor="?attr/colorOnPrimaryContainer"
-                    android:alpha="0.75"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="2dp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Save to Log -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_save"
+            android:text="Save to Log"
             android:enabled="false"
             android:layout_marginBottom="12dp" />
 
-        <!-- Share with Crew -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnShare"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_share"
+            android:text="Share"
             android:enabled="false" />
 
     </LinearLayout>

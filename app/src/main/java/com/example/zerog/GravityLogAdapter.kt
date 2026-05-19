@@ -27,9 +27,9 @@ class GravityLogAdapter(
         val log = getItem(position)
         with(holder.binding) {
             tvItemName.text = log.itemName
-            tvEarthWeight.text = "${"%.2f".format(log.earthWeight)} kg"
-            tvCalculatedWeight.text = "${"%.4f".format(log.calculatedWeight)} kg"
-            tvReduction.text = "Reduction: ${log.gravityReduction}%"
+            tvEarthWeight.text = "Earth: ${"%.2f".format(log.earthWeight)} kg"
+            tvCalculatedWeight.text = "Zero-G: ${"%.2f".format(log.calculatedWeight)} kg"
+            tvReduction.text = "${log.gravityReduction}% reduction"
             cardRoot.setOnClickListener { onItemClick(log) }
             cardRoot.setOnLongClickListener { onDeleteClick(log); true }
             btnDelete.setOnClickListener { onDeleteClick(log) }

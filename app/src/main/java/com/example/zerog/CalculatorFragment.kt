@@ -72,8 +72,7 @@ class CalculatorFragment : Fragment() {
         // Formula: Weight_Zero-G = Weight_Earth × (1 − Reduction/100)
         lastResult = earthWeight * (1.0 - reduction / 100.0)
 
-        binding.tvResult.text = "${"%.4f".format(lastResult)} kg"
-        binding.tvFormula.text = "$earthWeight × (1 − $reduction/100) = ${"%.4f".format(lastResult)} kg"
+        binding.tvResult.text = "${"%.2f".format(lastResult)} kg"
         binding.cardResult.visibility = View.VISIBLE
         binding.btnSave.isEnabled = true
         binding.btnShare.isEnabled = true
@@ -90,10 +89,10 @@ class CalculatorFragment : Fragment() {
                 itemName = name,
                 earthWeight = earthWeight,
                 gravityReduction = reduction,
-                calculatedWeight = result
-            )
+                calculatedWeight = result,
+            ),
         )
-        Toast.makeText(requireContext(), "\"$name\" saved to log!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Saved!", Toast.LENGTH_SHORT).show()
     }
 
     private fun shareResult() {
@@ -102,19 +101,18 @@ class CalculatorFragment : Fragment() {
         val reduction = binding.sliderGravity.value.toInt()
         val result = lastResult ?: return
 
-        val text = "🚀 Zero-G Weight Calculation\n\n" +
-                "Item: $name\n" +
-                "Earth Weight: $earthWeight kg\n" +
-                "Anti-Gravity Reduction: $reduction%\n" +
-                "Zero-G Weight: ${"%.4f".format(result)} kg\n\n" +
-                "Calculated with Zero-G Weight Simulator"
+        val text = "Zero-G Calculation\n" +
+            "Item: $name\n" +
+            "Earth weight: $earthWeight kg\n" +
+            "Anti-gravity: $reduction%\n" +
+            "Result: ${"%.2f".format(result)} kg"
 
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, text)
-            putExtra(Intent.EXTRA_SUBJECT, "Zero-G Calculation: $name")
+            putExtra(Intent.EXTRA_SUBJECT, "$name — Zero-G result")
         }
-        startActivity(Intent.createChooser(intent, "Share with Crew"))
+        startActivity(Intent.createChooser(intent, "Share"))
     }
 
     override fun onDestroyView() {
